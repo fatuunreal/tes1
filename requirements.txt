@@ -1,4 +1,4 @@
-numpy>=3.12.8
+numpy==1.24.0
 pandas==1.4.4
 streamlit
 scikit-learn
