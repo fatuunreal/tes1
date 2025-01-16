@@ -5,7 +5,7 @@ import streamlit as st
 diabetes_model = pickle.load(open('knn_diabetes_model.sav', 'rb'))
 
 # Judul web
-st.title('Prediksi Diabetes Dengan KNN new')
+st.title('Prediksi Diabetes Dengan KNN')
 
 # Membagi kolom
 col1, col2 = st.columns(2)
@@ -49,4 +49,26 @@ if st.button('Test Prediksi Diabetes'):
                 float(Pregnancies),
                 float(Glucose),
                 float(BloodPressure),
-                float(Skin
+                float(SkinThickness),
+                float(Insulin),
+                float(BMI),
+                float(DiabetesPedigreeFunction),
+                float(Age)
+            ]])
+
+            # Interpretasi hasil prediksi
+            if diab_prediction[0] == 1:
+                diab_diagnosis = 'Pasien terkena Diabetes'
+            else:
+                diab_diagnosis = 'Pasien tidak terkena Diabetes'
+    except ValueError:
+        diab_diagnosis = 'Masukkan nilai numerik yang valid'
+
+    # Menampilkan hasil prediksi
+    st.success(diab_diagnosis)
+
+# Debugging: Menampilkan input yang diterima
+st.write("Input yang diterima:",
+         f"Pregnancies: {Pregnancies}, Glucose: {Glucose}, Blood Pressure: {BloodPressure}, "
+         f"Skin Thickness: {SkinThickness}, Insulin: {Insulin}, BMI: {BMI}, "
+         f"Diabetes Pedigree Function: {DiabetesPedigreeFunction}, Age: {Age}")
